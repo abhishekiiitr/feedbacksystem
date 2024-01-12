@@ -1,0 +1,36 @@
+/* GetAllFeedbackPage.css */
+
+.feedback-container {
+    padding: 20px;
+    margin-left: 10px;
+  }
+  
+  .feedback-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .feedback-item {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feedback-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .feedback-title {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .feedback-description {
+    font-size: 16px;
+    color: #555;
+  }
+  
