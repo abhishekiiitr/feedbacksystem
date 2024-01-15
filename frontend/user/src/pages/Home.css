@@ -5,14 +5,14 @@ align-items: flex-end;
 justify-content: space-between;
 height: 90vh;
 padding: 20px;
-background-color: #283c5f;
+background-color: #355181;
 gap: 2px;
 }
 
 .first_div {
 flex: .57;
 margin-bottom: auto;
-background-color: #ffcc00; 
+background-color: #f9f8f2; 
 padding: 10px;
 border-radius: 25%;
 align-items: center;
@@ -45,9 +45,11 @@ justify-content: center;
   .b {
     text-decoration: none;
     font-size: 25px; 
-    font-style: bold; 
+    font-style: bold;
+    color: #004080;
     text-transform: uppercase;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
+    background-color:  #f5f5f5;
   }
   
   .b:hover {
@@ -67,3 +69,98 @@ justify-content: center;
     font-weight: 600; 
     color: #004080;
   }
+
+.login-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #333;
+}
+
+.login-button:hover {
+  color: #007bff;
+}
+
+
+.user-image {
+  width: 30px;
+  height: 30px; 
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.google-image {
+  width: 30px; 
+  height: 30px; 
+  margin-right: 8px;
+}
+
+.login-text {
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 16px; 
+}
+
+/* Styles for User Info Section */
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Styles for Login Section */
+.login-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.google-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.login-text {
+  font-weight: bold;
+}
+
+/* Additional Styling for User Logged In State */
+.user-logged-in {
+  background-color: #2ecc71;
+}
+

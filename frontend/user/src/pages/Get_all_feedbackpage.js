@@ -8,6 +8,7 @@ const Get_all_feedbackpage =  ()=> {
           .then(response => response.json())
           .then(resultData => {
             setData(resultData);
+            console.log(data) 
           })
           .catch(error => {
             console.error('Error fetching data:', error);
@@ -19,8 +20,9 @@ const Get_all_feedbackpage =  ()=> {
         {data.map(item => (
           <li key={item.id} className="feedback-item">
             <div className="feedback-content">
-              <h4 className="feedback-title">Created by {item.name}</h4>
+              <h4 className="feedback-title">Category: {item.name}</h4>
               <p className="feedback-description">{item.description}</p>
+              <p className="feedback-description">Rating {item.cover_image}</p>
             </div>
           </li>
         ))}
