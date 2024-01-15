@@ -1,63 +1,36 @@
-require("dotenv").config();
-const passport = require("passport");
-const authRoute = require("./routes/auth");
-const cookieSession = require("cookie-session");
-const passportStrategy = require("./passport");
+var createError = require('http-errors');
+var path = require('path');
+var authRouter = require('./routes/oauth');
+var requestRouter = require('./routes/request');
 
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 
 const app = express();
-const port = 3001;
-const cors = require("cors");
-
-
-app.use(
-	cookieSession({
-		name: "session",
-		keys: ["cyberwolve"],
-		maxAge: 24 * 60 * 60 * 100,
-	})
-);
-
-
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(
-	cors({
-		origin: "http://localhost:3000",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	})
-);
-
-app.use("/auth", authRoute);
-
-
-
-
-app.use(cors());
-
 app.use(express.json());
+
+const port = 3001;
+
+const cors = require("cors");
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 const apiKey = '923c67d3-2d75-48d2-94e8-5b92332bcb6d';
 const apiUrl = 'https://api.frill.co/v1';
 
 app.post('/create-idea', async (req, res) => {
     try {
-      const { name, description, approval_status, author_idx } = req.body;
+      const { name, description,cover_image, approval_status, author_idx } = req.body;
   
       const payload = {
         name,
         description,
+        cover_image,
         approval_status,
         author_idx: author_idx,
       };
   
-      console.log('Request Payload:', payload);
+      //console.log('Request Payload:', payload);
 
       const response = await axios.post(`${apiUrl}/ideas`, payload, {
         headers: {
@@ -75,6 +48,7 @@ app.post('/create-idea', async (req, res) => {
   });
 
 app.get('/get-ideas', async (req, res) => {
+  //console.log("aaya ")
   try {
     const response = await axios.get(`${apiUrl}/ideas`, {
       headers: {
@@ -86,8 +60,8 @@ app.get('/get-ideas', async (req, res) => {
     let output = [];
 
     response.data.data.forEach(idea => {
-    const { name, description, approval_status } = idea;
-    output.push({ name, description, approval_status });
+    const { name, description,cover_image, approval_status } = idea;
+    output.push({ name, description,cover_image, approval_status });
     });
 
     console.log('Extracted Data:', output);
@@ -98,6 +72,42 @@ app.get('/get-ideas', async (req, res) => {
   }
 });
 
+
+
+
+//-----------------------------------------------//oauth function
+
+
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/oauth', authRouter);
+app.use('/request', requestRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+
+//------------------------------------------------
+
+
 app.listen(port, () => {
   console.log("Server is running on port", port);
 });
+
+
+module.exports = app; //leter delete
