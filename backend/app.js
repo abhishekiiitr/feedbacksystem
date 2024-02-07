@@ -15,8 +15,8 @@ const port = 3001;
 const cors = require("cors");
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
-const apiKey = '923c67d3-2d75-48d2-94e8-5b92332bcb6d';
-const apiUrl = 'https://api.frill.co/v1';
+const apiKey = process.env.API_KEY;
+const apiUrl = process.env.API_URL;
 
 app.post('/create-idea', async (req, res) => {
     try {

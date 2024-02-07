@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" Component={Home} />
+        <Route  path="/" Component={Home} />
         <Route path="/submit-feedback" Component={Submit_feedback} />
         <Route path="/display-feedback" Component={Get_all_feedbackpage}/>
       </Routes>

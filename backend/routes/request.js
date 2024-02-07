@@ -9,7 +9,7 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 const dotenv = require('dotenv');
 dotenv.config(); // Load environment variables from .env file
 
-const {OAuth2Client} = require('google-auth-library');       // used for auth2 authorization with google services
+const {OAuth2Client} = require('google-auth-library');       // auth2 authorization with google services
 
 /* GET users listing. */
 router.post('/', async function(req, res, next) {  
@@ -27,7 +27,7 @@ router.post('/', async function(req, res, next) {
       scope: 'https://www.googleapis.com/auth/userinfo.profile  openid ',
       prompt: 'consent'
     });
-
+    console.log(authorizeUrl);
     res.json({url:authorizeUrl})
 
 });
