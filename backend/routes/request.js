@@ -27,7 +27,6 @@ router.post('/', async function(req, res, next) {
       scope: 'https://www.googleapis.com/auth/userinfo.profile  openid ',
       prompt: 'consent'
     });
-    console.log(authorizeUrl);
     res.json({url:authorizeUrl})
 
 });
